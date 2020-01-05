@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Stochastic Processes as Monad Transformers</title>
+  <meta property="og:title" content="Stochastic Processes as Monad Transformers" />
+  <meta property="og:image" content="https://rcalsaverini.github.io/images/me.png" />
+  <meta name="description" content="Data scientist and manager of data science teams.">
+  <meta property="og:description" content="Data scientist and manager of data science teams." />
+  <meta name="author" content="Rafael S. Calsaverini">
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+    rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css' rel='stylesheet'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+    rel="stylesheet">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+  <link href="https://rcalsaverini.github.io/css/resume.css" rel="stylesheet">
+  <link href="https://rcalsaverini.github.io/css/tweaks.css" rel="stylesheet">
+  <meta name="generator" content="Hugo 0.62.1" />
+  
+  
+  
+</head>
+
+<body id="page-top">
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+  <a class="navbar-brand js-scroll-trigger" href="#page-top">
+    <span class="d-block d-lg-none">Rafael S. Calsaverini</span>
+    <span class="d-none d-lg-block">
+      <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/images/me.png" alt="">
+    </span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="/#about">About</a>
+      </li>
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#experience">Experience</a>
+          </li>
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#education">Education</a>
+          </li>
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#blog">Blog</a>
+          </li>
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#skills">Skills</a>
+          </li>
+      
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#publications">Publications</a>
+          </li>
+      
+
+    </ul>
+  </div>
+</nav>
+
+  <div class="container-fluid p-0">
+    
+<nav aria-label="breadcrumb">
+  <ol  class="breadcrumb">
+    
+
+
+
+
+
+<li class="breadcrumb-item">
+  <a href="https://rcalsaverini.github.io/"></a>
+</li>
+
+
+<li class="breadcrumb-item">
+  <a href="https://rcalsaverini.github.io/blog/">Blogs</a>
+</li>
+
+
+<li class="breadcrumb-item active">
+  <a href="https://rcalsaverini.github.io/blog/2010-08-03-stochastic-processes/">Stochastic Processes as Monad Transformers</a>
+</li>
+
+  </ol>
+</nav>
+
+
+
+
+<section class="resume-section p-3 p-lg-5 d-flex d-column">
+  <div class="my-auto">
+    <h2 class="mb-0"><span class="text-primary">Stochastic Processes as Monad Transformers</span></h2>
+    <span class="text-primary">August 3, 2010</span>
+    <p><strong>Disclaimer: this is an old blog post from a very old wordpress blog and may contain inacuracies. I reproduced it as is for sentimental reasons. I may revisit this theme later.</strong></p>
+<p>I have a difficulty to understand functional programming concepts that I can’t put to some very simple and natural use (natural for me, of course). I need to find the perfect simple example to implement to finally understand something. And I’m not a computer scientist, so things like parsers and compilers have very little appeal to me (probably because I don’t understand them…). I’m a physicist, so this drives me to look for physical problems that can be implemented in Haskell so I can understand some concepts.</p>
+<p>Monad transformers still eludes me. But I think I finally got the perfect subject were I can understand them: stochastic processes! First some book keeping:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">Control.Monad.State</span>
+<span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">Control.Monad</span>
+<span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">Control.Monad.Rand</span>
+</code></pre></div><p>Now, stochastic processes have characteristics related to two different monads. In one hand, they are dynamical processes, and the way to implement dynamics in Haskell is with state monads. For example, if I want to iterate the logistic map:</p>
+<p>$$x_{t+1} = \alpha x_t\left(1-x_t\right)$$</p>
+<p>$$ teste = teste $$</p>
+<p>I could do the following:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell">  f <span style="color:#a2f;font-weight:bold">::</span> <span style="color:#0b0;font-weight:bold">Double</span> <span style="color:#a2f;font-weight:bold">-&gt;</span> <span style="color:#0b0;font-weight:bold">Double</span>
+  f x <span style="color:#a2f;font-weight:bold">=</span> <span style="color:#666">4</span><span style="color:#666">*</span>x<span style="color:#666">*</span>(<span style="color:#666">1</span><span style="color:#666">-</span>x)
+
+  logistic <span style="color:#a2f;font-weight:bold">::</span> <span style="color:#0b0;font-weight:bold">State</span> <span style="color:#0b0;font-weight:bold">Double</span> <span style="color:#0b0;font-weight:bold">Double</span>
+  logistic <span style="color:#a2f;font-weight:bold">=</span> <span style="color:#a2f;font-weight:bold">do</span> x0 <span style="color:#a2f;font-weight:bold">&lt;-</span> get
+        <span style="color:#a2f;font-weight:bold">let</span> x1 <span style="color:#a2f;font-weight:bold">=</span> f x
+        put x1
+        return x1
+  runLogistic <span style="color:#a2f;font-weight:bold">::</span> <span style="color:#0b0;font-weight:bold">State</span> <span style="color:#0b0;font-weight:bold">Double</span> [<span style="color:#0b0;font-weight:bold">Double</span>]
+  runLogistic n x0<span style="color:#a2f;font-weight:bold">=</span> evalState (replicateM n logistic) x0
+</code></pre></div><p>Running this on ghci would give you, for example:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell">  <span style="color:#666">*</span><span style="color:#0b0;font-weight:bold">Main</span><span style="color:#666">&gt;</span> runLogistic <span style="color:#666">5</span> <span style="color:#666">0.2</span>
+  [<span style="color:#666">0.6400000000000001</span>,<span style="color:#666">0.9215999999999999</span>,<span style="color:#666">0.28901376000000045</span>, <span style="color:#666">0.8219392261226504</span>,<span style="color:#666">0.5854205387341</span>]
+</code></pre></div><p>So we can make the loose correspondence: dynamical system ↔ state monad.</p>
+<p>On the other hand, stochastic processes are compositions of random variables, and this is done with the Rand monad (found in <code>Control.Monad.Random</code>). As an example, the Box-Muller formula tells us that, if I have two inpendent random variables $x$ and $y$, distributed uniformly between in the \([0, 1]\) interval, then, the expression:</p>
+<p>$$\sqrt{-2\log(x)}\cos(2\pi y)$$</p>
+<p>will be normally distributed. We can write then:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#00a000">boxmuller</span> <span style="color:#a2f;font-weight:bold">::</span> <span style="color:#0b0;font-weight:bold">Double</span> <span style="color:#a2f;font-weight:bold">-&gt;</span> <span style="color:#0b0;font-weight:bold">Double</span> <span style="color:#a2f;font-weight:bold">-&gt;</span> <span style="color:#0b0;font-weight:bold">Double</span>
+<span style="color:#00a000">boxmuller</span> x y <span style="color:#a2f;font-weight:bold">=</span> sqrt(<span style="color:#666">-</span><span style="color:#666">2</span><span style="color:#666">*</span>log x)<span style="color:#666">*</span>cos(<span style="color:#666">2</span><span style="color:#666">*</span>pi<span style="color:#666">*</span>y)
+
+<span style="color:#00a000">normal</span> <span style="color:#a2f;font-weight:bold">::</span> <span style="color:#0b0;font-weight:bold">Rand</span> <span style="color:#0b0;font-weight:bold">StdGen</span> <span style="color:#0b0;font-weight:bold">Double</span>  <span style="color:#080;font-style:italic">-- normally distributed</span>
+<span style="color:#00a000">normal</span> <span style="color:#a2f;font-weight:bold">=</span> <span style="color:#a2f;font-weight:bold">do</span> x <span style="color:#a2f;font-weight:bold">&lt;-</span> getRandom
+            y <span style="color:#a2f;font-weight:bold">&lt;-</span> getRandom
+            return <span style="color:#666">$</span> boxmuller x y
+
+<span style="color:#00a000">normals</span> n <span style="color:#a2f;font-weight:bold">=</span> replicateM n normal <span style="color:#080;font-style:italic">-- n independent samples from normal</span>
+</code></pre></div><p>Running this function we get what we need:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#666">*</span><span style="color:#0b0;font-weight:bold">Main</span><span style="color:#666">&gt;</span> (evalRand <span style="color:#666">$</span> normals <span style="color:#666">5</span>) (mkStdGen <span style="color:#666">0</span>) <span style="color:#a2f;font-weight:bold">=</span>
+[<span style="color:#666">0.1600255836730147</span>,<span style="color:#666">0.1575360140445035</span>,<span style="color:#666">-</span><span style="color:#666">1.595627933129274</span>,
+<span style="color:#666">-</span><span style="color:#666">0.18196791439834512</span>,<span style="color:#666">-</span><span style="color:#666">1.082222285056746</span>]
+</code></pre></div><p>So what is a stochastic process? In very rough terms: is a dynamical system with random variables. So we need a way to make the <code>Rand</code> monad to talk nicely with the <code>State</code> monad. The way to do this is to use a monad transformer, in this case, the <code>StateT</code> transformer. Monad transformers allows you to combine the functionalities of two different monads. In the case of the <code>StateT</code> monads, they allow you to add a state to any other monad you want. In our case, we want to wrap the <code>Rand</code> monad inside a <code>StateT</code> transformer and work with things of type:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#00a000">foo</span> <span style="color:#a2f;font-weight:bold">::</span>  <span style="color:#0b0;font-weight:bold">StateT</span> s (<span style="color:#0b0;font-weight:bold">Rand</span> <span style="color:#0b0;font-weight:bold">StdGen</span>) r
+</code></pre></div><p>This type represent a monad that can store a state with type s, like the state monad, and can generate random variables of type r, like the rand monad. In general we would have a type</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#00a000">foo2</span> <span style="color:#a2f;font-weight:bold">::</span>(<span style="color:#0b0;font-weight:bold">MonadTrans</span> t, <span style="color:#0b0;font-weight:bold">Monad</span> m) <span style="color:#a2f;font-weight:bold">=&gt;</span> t m a
+</code></pre></div><p>In this case, <code>t = StateT s</code> and <code>m = Rand StdGen</code>. The class <code>MonadTrans</code> is defined in <code>Control.Monad.Trans</code>, and provides the function:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#00a000">lift</span> <span style="color:#a2f;font-weight:bold">::</span> (<span style="color:#0b0;font-weight:bold">MonadTrans</span> t, <span style="color:#0b0;font-weight:bold">Monad</span> m) <span style="color:#a2f;font-weight:bold">=&gt;</span> m a <span style="color:#a2f;font-weight:bold">-&gt;</span> t m a
+</code></pre></div><p>In this case, <code>t</code> is itself a monad, and can be treated like one through the code. It works like this: inside a do expression you can use the <code>lift</code> function to access the inner monad. Things called with lift will operate in the inner monad. Things called without <code>lift</code> will operate in the outer monad.</p>
+<p>So, suppose we want to simulate this very simple process:</p>
+<p>$$x_{t+1} = x_t + \eta_t$$</p>
+<p>where \(\eta_t\) is drawn from a normal distribution. We would do:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#00a000">randomWalk</span> <span style="color:#a2f;font-weight:bold">::</span> <span style="color:#0b0;font-weight:bold">StateT</span> <span style="color:#0b0;font-weight:bold">Double</span> (<span style="color:#0b0;font-weight:bold">Rand</span> <span style="color:#0b0;font-weight:bold">StdGen</span>) <span style="color:#0b0;font-weight:bold">Double</span>
+<span style="color:#00a000">randomWalk</span> <span style="color:#a2f;font-weight:bold">=</span> <span style="color:#a2f;font-weight:bold">do</span> eta <span style="color:#a2f;font-weight:bold">&lt;-</span> lift normal
+                x <span style="color:#a2f;font-weight:bold">&lt;-</span> get
+                <span style="color:#a2f;font-weight:bold">let</span> x&#39; <span style="color:#a2f;font-weight:bold">=</span> x <span style="color:#666">+</span> eta
+                put x&#39;
+                return x&#39;
+<span style="color:#00a000">runWalk</span> <span style="color:#a2f;font-weight:bold">::</span> <span style="color:#0b0;font-weight:bold">Int</span> <span style="color:#a2f;font-weight:bold">-&gt;</span> <span style="color:#0b0;font-weight:bold">Double</span> <span style="color:#a2f;font-weight:bold">-&gt;</span> <span style="color:#0b0;font-weight:bold">StdGen</span> <span style="color:#a2f;font-weight:bold">-&gt;</span> [<span style="color:#0b0;font-weight:bold">Double</span>]
+<span style="color:#00a000">runWalk</span> n x0 gen <span style="color:#a2f;font-weight:bold">=</span> evalRand (replicateM n <span style="color:#666">$</span> evalStateT randomWalk x0) gen
+</code></pre></div><p>The <code>evalStateT</code> function is just evalState adapted to run a StateT monad. Running this on ghci we get:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"> <span style="color:#666">*</span><span style="color:#0b0;font-weight:bold">Main</span><span style="color:#666">&gt;</span> runWalk <span style="color:#666">5</span> <span style="color:#666">0.0</span> gen
+[<span style="color:#666">0.1600255836730147</span>,<span style="color:#666">0.1575360140445035</span>,<span style="color:#666">-</span><span style="color:#666">1.595627933129274</span>,
+<span style="color:#666">-</span><span style="color:#666">0.18196791439834512</span>,<span style="color:#666">-</span><span style="color:#666">1.082222285056746</span>]
+</code></pre></div><p>This is what we can accomplish: we can easily operate simultaneously with functions that expect a state monad, like put and get, we can unwrap things with <code>&lt;-</code> from the inner <code>Rand</code> monad by using <code>lift</code> , and we can return things to the state monad. We could have any monad inside the <code>StateT</code> transformer. For example, we could have another <code>State</code> monad. Here is a fancy implementation of the Fibonacci sequence using a <code>State</code> monad (that stores the last but one value in the sequence as its internal state) inside a <code>StateT</code> transfomer (that stores the last value of the sequence):</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#00a000">fancyFib</span> <span style="color:#a2f;font-weight:bold">::</span> <span style="color:#0b0;font-weight:bold">StateT</span> <span style="color:#0b0;font-weight:bold">Int</span> (<span style="color:#0b0;font-weight:bold">State</span> <span style="color:#0b0;font-weight:bold">Int</span>) <span style="color:#0b0;font-weight:bold">Int</span>
+<span style="color:#00a000">fancyFib</span> <span style="color:#a2f;font-weight:bold">=</span> <span style="color:#a2f;font-weight:bold">do</span> old <span style="color:#a2f;font-weight:bold">&lt;-</span> lift get
+              new <span style="color:#a2f;font-weight:bold">&lt;-</span> get
+              <span style="color:#a2f;font-weight:bold">let</span> new&#39; <span style="color:#a2f;font-weight:bold">=</span> new <span style="color:#666">+</span> old
+                  old&#39; <span style="color:#a2f;font-weight:bold">=</span> new
+              lift <span style="color:#666">$</span> put old&#39;
+              put new&#39;
+              return new
+
+<span style="color:#00a000">fancyFibs</span> <span style="color:#a2f;font-weight:bold">::</span> <span style="color:#0b0;font-weight:bold">Int</span> <span style="color:#a2f;font-weight:bold">-&gt;</span> <span style="color:#0b0;font-weight:bold">StateT</span> <span style="color:#0b0;font-weight:bold">Int</span> (<span style="color:#0b0;font-weight:bold">State</span> <span style="color:#0b0;font-weight:bold">Int</span>) [<span style="color:#0b0;font-weight:bold">Int</span>]
+<span style="color:#00a000">fancyFibs</span> n <span style="color:#a2f;font-weight:bold">=</span> replicateM n fancyFibs
+</code></pre></div><p>And we can run this to get:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#666">*</span><span style="color:#0b0;font-weight:bold">Main</span><span style="color:#666">&gt;</span> evalState (evalStateT (fancyFibs <span style="color:#666">10</span>) <span style="color:#666">1</span>) <span style="color:#666">0</span>
+[<span style="color:#666">1</span>,<span style="color:#666">1</span>,<span style="color:#666">2</span>,<span style="color:#666">3</span>,<span style="color:#666">5</span>,<span style="color:#666">8</span>,<span style="color:#666">13</span>,<span style="color:#666">21</span>,<span style="color:#666">34</span>,<span style="color:#666">55</span>]
+</code></pre></div>
+    
+    <ul class="tags">
+    
+      <li><a class="tag" href="/tags/haskell">Haskell</a></li>
+    
+      <li><a class="tag" href="/tags/monad-transformers">Monad Transformers</a></li>
+    
+      <li><a class="tag" href="/tags/monads">Monads</a></li>
+    
+      <li><a class="tag" href="/tags/stochastic-processes">Stochastic Processes</a></li>
+    
+      <li><a class="tag" href="/tags/probability-monad">Probability Monad</a></li>
+    
+</ul>
+
+    <div class="comments">
+      Comment here:
+      <script src="https://utteranc.es/client.js"
+          repo="rcalsaverini/rcalsaverini.github.io"
+          issue-term="title"
+          label="comment"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+      </script>
+    </div>
+  </div>
+
+</section>
+
+
+    
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  
+  <script src="/js/resume.js"></script>
+  <script async
+    src="https://www.googletagmanager.com/gtag/js?id=UA-53013610-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-53013610-1');
+  </script>
+  
+
+  
+</body>
+
+</html>

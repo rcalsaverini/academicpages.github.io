@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Blog s</title>
+    <link>https://rcalsaverini.github.io/tags/</link>
+    <description>Recent content in Tags on Blog s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Jan 2019 22:00:00 -0200</lastBuildDate>
+    
+	<atom:link href="https://rcalsaverini.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mypy</title>
+      <link>https://rcalsaverini.github.io/tags/mypy/</link>
+      <pubDate>Sun, 20 Jan 2019 22:00:00 -0200</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/mypy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://rcalsaverini.github.io/tags/python/</link>
+      <pubDate>Sun, 20 Jan 2019 22:00:00 -0200</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Type safety</title>
+      <link>https://rcalsaverini.github.io/tags/type-safety/</link>
+      <pubDate>Sun, 20 Jan 2019 22:00:00 -0200</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/type-safety/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ethics</title>
+      <link>https://rcalsaverini.github.io/tags/ethics/</link>
+      <pubDate>Tue, 12 Jun 2018 21:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/ethics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Humanism</title>
+      <link>https://rcalsaverini.github.io/tags/humanism/</link>
+      <pubDate>Tue, 12 Jun 2018 21:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/humanism/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Moral growth</title>
+      <link>https://rcalsaverini.github.io/tags/moral-growth/</link>
+      <pubDate>Tue, 12 Jun 2018 21:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/moral-growth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Racism</title>
+      <link>https://rcalsaverini.github.io/tags/racism/</link>
+      <pubDate>Tue, 12 Jun 2018 21:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/racism/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Xenophobia</title>
+      <link>https://rcalsaverini.github.io/tags/xenophobia/</link>
+      <pubDate>Tue, 12 Jun 2018 21:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/xenophobia/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Haskell</title>
+      <link>https://rcalsaverini.github.io/tags/haskell/</link>
+      <pubDate>Mon, 12 Feb 2018 22:00:00 -0200</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/haskell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Records</title>
+      <link>https://rcalsaverini.github.io/tags/records/</link>
+      <pubDate>Mon, 12 Feb 2018 22:00:00 -0200</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/records/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Type-level programming</title>
+      <link>https://rcalsaverini.github.io/tags/type-level-programming/</link>
+      <pubDate>Mon, 12 Feb 2018 22:00:00 -0200</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/type-level-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Category Theory</title>
+      <link>https://rcalsaverini.github.io/tags/category-theory/</link>
+      <pubDate>Wed, 25 Aug 2010 21:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/category-theory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Free Monads</title>
+      <link>https://rcalsaverini.github.io/tags/free-monads/</link>
+      <pubDate>Wed, 25 Aug 2010 21:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/free-monads/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Free Vector Space</title>
+      <link>https://rcalsaverini.github.io/tags/free-vector-space/</link>
+      <pubDate>Wed, 25 Aug 2010 21:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/free-vector-space/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Monads</title>
+      <link>https://rcalsaverini.github.io/tags/monads/</link>
+      <pubDate>Wed, 25 Aug 2010 21:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/monads/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Operational Monads</title>
+      <link>https://rcalsaverini.github.io/tags/operational-monads/</link>
+      <pubDate>Wed, 25 Aug 2010 21:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/operational-monads/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Monad Transformers</title>
+      <link>https://rcalsaverini.github.io/tags/monad-transformers/</link>
+      <pubDate>Tue, 03 Aug 2010 00:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/monad-transformers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Probability Monad</title>
+      <link>https://rcalsaverini.github.io/tags/probability-monad/</link>
+      <pubDate>Tue, 03 Aug 2010 00:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/probability-monad/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stochastic Processes</title>
+      <link>https://rcalsaverini.github.io/tags/stochastic-processes/</link>
+      <pubDate>Tue, 03 Aug 2010 00:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/tags/stochastic-processes/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

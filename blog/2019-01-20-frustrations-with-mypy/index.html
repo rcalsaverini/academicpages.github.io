@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>A few frustrations with Python&#39;s type annotation system</title>
+  <meta property="og:title" content="A few frustrations with Python&#39;s type annotation system" />
+  <meta property="og:image" content="https://rcalsaverini.github.io/images/me.png" />
+  <meta name="description" content="Data scientist and manager of data science teams.">
+  <meta property="og:description" content="Data scientist and manager of data science teams." />
+  <meta name="author" content="Rafael S. Calsaverini">
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+    rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css' rel='stylesheet'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+    rel="stylesheet">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+  <link href="https://rcalsaverini.github.io/css/resume.css" rel="stylesheet">
+  <link href="https://rcalsaverini.github.io/css/tweaks.css" rel="stylesheet">
+  <meta name="generator" content="Hugo 0.62.1" />
+  
+  
+  
+</head>
+
+<body id="page-top">
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+  <a class="navbar-brand js-scroll-trigger" href="#page-top">
+    <span class="d-block d-lg-none">Rafael S. Calsaverini</span>
+    <span class="d-none d-lg-block">
+      <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/images/me.png" alt="">
+    </span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="/#about">About</a>
+      </li>
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#experience">Experience</a>
+          </li>
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#education">Education</a>
+          </li>
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#blog">Blog</a>
+          </li>
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#skills">Skills</a>
+          </li>
+      
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#publications">Publications</a>
+          </li>
+      
+
+    </ul>
+  </div>
+</nav>
+
+  <div class="container-fluid p-0">
+    
+<nav aria-label="breadcrumb">
+  <ol  class="breadcrumb">
+    
+
+
+
+
+
+<li class="breadcrumb-item">
+  <a href="https://rcalsaverini.github.io/"></a>
+</li>
+
+
+<li class="breadcrumb-item">
+  <a href="https://rcalsaverini.github.io/blog/">Blogs</a>
+</li>
+
+
+<li class="breadcrumb-item active">
+  <a href="https://rcalsaverini.github.io/blog/2019-01-20-frustrations-with-mypy/">A few frustrations with Python&#39;s type annotation system</a>
+</li>
+
+  </ol>
+</nav>
+
+
+
+
+<section class="resume-section p-3 p-lg-5 d-flex d-column">
+  <div class="my-auto">
+    <h2 class="mb-0"><span class="text-primary">A few frustrations with Python&#39;s type annotation system</span></h2>
+    <span class="text-primary">January 20, 2019</span>
+    <p>I have on and off again tried to use <a href="http://mypy-lang.org/">mypy</a> to type check my python code, but some shortcomings of Python's type annotation system really get in the way. This came now because I needed to write code involving trees that had to change the types of values stored on the nodes. This highlighted a few serious shortcomings for anyone that is accostumed to use stronger type systems.</p>
+<h3 id="the-ugly-syntax-for-function-types-is-annoying-but-there-are-worse-problems">The ugly syntax for function types is annoying but there are worse problems</h3>
+<p>Yes, writing <code>Callable[[Callable[[A], B], F[A]], F[B]]</code> instead of <code>(a -&gt; b) -&gt; f a -&gt; f b</code> as in Haskell or <code>(A =&gt; B, F[A]) =&gt; F[B]</code> (or maybe the uncurried <code>(A =&gt; B) =&gt; (F[A] =&gt; F[B])</code> version) as in Scala is really annoying.</p>
+<p>But that's neither here nor there. One can get accostumed to it. On the other hand, it is certainly symptomatic of the philosophy chosen for the type system: passing functions around is not an idea on the forefront of this design.</p>
+<h3 id="people-are-not-using-it">People are not using it</h3>
+<p>In general, the overwhelming majority of the python libraries I use simply don't have type annotations or stub files and don't plan to add them in the near future. Writing stub files on your own is a pain. This by itself prevents the adoption of type annotations without a lot of effort in providing stub files yourself.</p>
+<h3 id="the-ad-hoc-polymorphism-mechanism-chosen-is-annoying">The ad hoc polymorphism mechanism chosen is annoying</h3>
+<p>The only way to do ad hoc polymorphism is with structural subtyping (using <code>Protocol</code>). This isn't so bad, since the language embraces duck typing so thoroughly. But it's somewhat annoying for two reasons:</p>
+<ol>
+<li>
+<p>First, admitedly a lesser problem, there's no clear indication in the code that a given class implements a particular <code>Protocol</code>. There's no explicit inheritance, nor explicit instancing of the <code>Protocol</code>. If you don't know the protocol exists, when you see the code of a class, you have no clue that there is a more general pattern that this class implements.</p>
+</li>
+<li>
+<p>Second, there's no &ldquo;post facto&rdquo; instancing of <code>Protocol</code> like it's possible to do with Haskell's or Scala's typeclasses, or Go's interfaces. You have one chance to instanciate a class as a particular Protocol: when you write that classes code. If the class belongs to a third party library you can't change, you have to write wrappers (which are terribly annoying, because the language offers no syntax sugar for them).</p>
+</li>
+</ol>
+<h3 id="no-support-for-lightweight-parametrically-polymorphic-product-types">No support for lightweight parametrically polymorphic product types</h3>
+<p>Python's type annotations don't allow you to write generic named tuples. This prevents one to write very lightweight types like:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">Foo</span>(NamedTuple, Generic[A]):
+    a_value: A
+    a_list: List[A]
+</code></pre></div><p>If you want a parametrically polymorphic type, it must be a fully fledged class by itself.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-style:italic">### will type check</span>
+<span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">Foo</span>(Generic[A]):
+    <span style="color:#a2f;font-weight:bold">def</span> __init__(self, a_value: A, a_list: List[A]):
+        self<span style="color:#666">.</span>a_value <span style="color:#666">=</span> a_value
+        self<span style="color:#666">.</span>a_list <span style="color:#666">=</span> a_list
+</code></pre></div><p>This discourages me to use it for many applications, since Python's classes are not exactly lightweight things and I'd rather not have a class if I don't really need one. You could use a type synonym for an untagged tuple, but this would be a serious documentation hazard:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">Foo <span style="color:#666">=</span> Tuple[A, List[A]]
+</code></pre></div><h3 id="no-support-for-lightweight-recursive-product-types">No support for lightweight recursive product types</h3>
+<p>Similarly, Python's type annotations don't allow recursive types unless you're dealing with a full fledged class. Recursive <code>NamedTuples</code> are forbidden, and so are recursive <code>Union</code>s (which wouldn't be possible given the restriction on higher-kinded types anyway, see below). This further prevents fast and lightweight types like:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">BinaryTree</span>(NamedTuple):
+    left: <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">BinaryTree</span><span style="color:#b44">&#34;</span>
+    right: <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">BinaryTree</span><span style="color:#b44">&#34;</span>
+</code></pre></div><p>and requires you to use the full (and heavy) Python classes:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">BinaryTree</span>(<span style="color:#a2f">object</span>):
+    <span style="color:#a2f;font-weight:bold">def</span> __init__(self, left: <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">BinaryTree</span><span style="color:#b44">&#34;</span>, right: <span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">BinaryTree</span><span style="color:#b44">&#34;</span>):
+            self<span style="color:#666">.</span>left <span style="color:#666">=</span> left
+            self<span style="color:#666">.</span>right <span style="color:#666">=</span> right
+</code></pre></div><h3 id="no-higher-kinded-types">No higher kinded types</h3>
+<p>Python's type annotations have no support for <a href="https://stackoverflow.com/questions/6246719/what-is-a-higher-kinded-type-in-scala">higher-kinded</a> types. All type variables in a class that inherit from Generic must be of kind <code>*</code>. This is kind of a catastrophe for any kind of more advanced use of the type system to improve correctness garantees. It also prevents some uses of higher kinded patterns like functors, monads, etc.</p>
+<p>For example, you can't use the finally tagless or <a href="http://okmij.org/ftp/tagless-final/index.html">tagless-final</a> pattern. At least not like this:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">DataAccessMonad</span>(Generic[M]):
+    <span style="color:#a2f;font-weight:bold">def</span> <span style="color:#00a000">get_user</span>(self, user_id: UserId) <span style="color:#666">-</span><span style="color:#666">&gt;</span> M[User]
+        <span style="color:#a2f;font-weight:bold">pass</span>
+</code></pre></div><p>Also, this makes it difficult to implement &ldquo;post-facto&rdquo; ad hoc polymorphism using something like <a href="https://typelevel.org/cats/typeclasses.html">Scala's typeclass instance</a> mechanisms to escape <code>Protocol</code>s. For this, one would need to write:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">FunctorInstance</span>(Generic[F]):
+
+    <span style="color:#a2f">@staticmethod</span>
+    <span style="color:#a2f;font-weight:bold">def</span> <span style="color:#00a000">map</span>(value: F[A], function: Callable[[A], B]) <span style="color:#666">-</span><span style="color:#666">&gt;</span> F[B]:
+        <span style="color:#a2f;font-weight:bold">pass</span>
+</code></pre></div><p>My original plan for a type class library involved creating a way to inject the instance, wrap the <code>F[A]</code> value and monkey patch it to call <code>value.map</code> when you need it. The fact that one can't use higher kinded types prevents the code above to type check.</p>
+<h3 id="and-so-no-fixed-point-functors-and-other-niceties">And so&hellip; no fixed point functors and other niceties</h3>
+<p>This means also that you can't use fixed point types like:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">CoFree</span>(NamedTuple, Generic[F, A]):
+    value: A
+    continuations: F[<span style="color:#b44"></span><span style="color:#b44">&#34;</span><span style="color:#b44">Cofree[F, A]</span><span style="color:#b44">&#34;</span>]
+</code></pre></div><p>because this requires F to be of kind <code>* -&gt; *</code>. Fixed point types are awfully useful for dealing with tree-like structures (see for example <a href="https://www.youtube.com/watch?v=7xSfLPD6tiQ">this talk from Rob Norris</a>) and would similarly fail to type check on <a href="http://mypy-lang.org/">mypy</a>.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>There are more problems, but those are the main ones that prevented me from really using <a href="http://mypy-lang.org/">mypy</a> or type annotations in Python. This haven't prevented me from writing good and useful Python code, and I still love to write Python. But it certainly increases the attrition.</p>
+
+    
+    <ul class="tags">
+    
+      <li><a class="tag" href="/tags/python">Python</a></li>
+    
+      <li><a class="tag" href="/tags/type-safety">Type safety</a></li>
+    
+      <li><a class="tag" href="/tags/mypy">Mypy</a></li>
+    
+</ul>
+
+    <div class="comments">
+      Comment here:
+      <script src="https://utteranc.es/client.js"
+          repo="rcalsaverini/rcalsaverini.github.io"
+          issue-term="title"
+          label="comment"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+      </script>
+    </div>
+  </div>
+
+</section>
+
+
+    
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  
+  <script src="/js/resume.js"></script>
+  <script async
+    src="https://www.googletagmanager.com/gtag/js?id=UA-53013610-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-53013610-1');
+  </script>
+  
+
+  
+</body>
+
+</html>

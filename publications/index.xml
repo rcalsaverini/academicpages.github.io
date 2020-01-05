@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publications on Blog s</title>
+    <link>https://rcalsaverini.github.io/publications/</link>
+    <description>Recent content in Publications on Blog s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Aug 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://rcalsaverini.github.io/publications/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Phase transition from egalitarian to hierarchical societies driven by competition between cognitive and social constraints</title>
+      <link>https://rcalsaverini.github.io/publications/2016-hierarchy/</link>
+      <pubDate>Thu, 11 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/publications/2016-hierarchy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tópicos em mecânica estatística de sistemas complexos: uma abordagem mecânico-estatística de dois tópicos de interesse em finanças, economia e sociologia</title>
+      <link>https://rcalsaverini.github.io/publications/2013-phd/</link>
+      <pubDate>Fri, 26 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/publications/2013-phd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>An information-theoretic approach to statistical dependence: Copula information</title>
+      <link>https://rcalsaverini.github.io/publications/2009-copula/</link>
+      <pubDate>Tue, 22 Dec 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/publications/2009-copula/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Intersubband-induced spin-orbit interaction in quantum wells</title>
+      <link>https://rcalsaverini.github.io/publications/2008-intersubband-copy/</link>
+      <pubDate>Tue, 07 Oct 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/publications/2008-intersubband-copy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Acoplamento spin-órbita inter-subbanda em heteroestruturas semicondutoras</title>
+      <link>https://rcalsaverini.github.io/publications/2007-masters/</link>
+      <pubDate>Fri, 26 Oct 2007 00:00:00 +0000</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/publications/2007-masters/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

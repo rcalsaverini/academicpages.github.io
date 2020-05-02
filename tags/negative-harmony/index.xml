@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Negative Harmony on Blog s</title>
+    <link>https://rcalsaverini.github.io/tags/negative-harmony/</link>
+    <description>Recent content in Negative Harmony on Blog s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 12 Apr 2017 00:00:00 -0300</lastBuildDate>
+    
+	<atom:link href="https://rcalsaverini.github.io/tags/negative-harmony/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Music theory musings - negative harmony and chirality.</title>
+      <link>https://rcalsaverini.github.io/blog/2020-04-12-music-theory-modes/</link>
+      <pubDate>Wed, 12 Apr 2017 00:00:00 -0300</pubDate>
+      
+      <guid>https://rcalsaverini.github.io/blog/2020-04-12-music-theory-modes/</guid>
+      <description>Recently I&#39;ve been listening to a 12tone video on YouTube about negative harmony, a concept recently popularized by musician Jacob Collier. On the related links I found a bunch of videos from this channel with &amp;ldquo;negative harmony&amp;rdquo; versions of many popular songs. They have a quite interesting sonority to them, and it struck me that even though the original songs had very strongly major or minor melodies, the transformed melodies had a quality about them that suggest other modes.</description>
+    </item>
+    
+  </channel>
+</rss>

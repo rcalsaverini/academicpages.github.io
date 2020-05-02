@@ -121,8 +121,9 @@
 <section class="resume-section p-3 p-lg-5 d-flex d-column">
   <div class="my-auto">
     <h2 class="mb-0"><span class="text-primary">Operational Semantics for Monads</span></h2>
-    <span class="text-primary">August 25, 2010</span>
-    <p><strong>Disclaimer: this is an old blog post from a very old wordpress blog and may contain inacuracies. I reproduced it as is for sentimental reasons. I may revisit this theme later.</strong></p>
+    <div class="textual-content">
+      <span class="text-primary">August 25, 2010</span>
+      <p><strong>Disclaimer: this is an old blog post from a very old wordpress blog and may contain inacuracies. I reproduced it as is for sentimental reasons. I may revisit this theme later.</strong></p>
 <p>While randomly browsing around on <a href="http://planet.haskell.org/">Planet Haskell</a> I've found <a href="http://apfelmus.nfshost.com/articles/operational-monad.html#concatenation-and-thoughts-on-the-interface">a post</a> on <a href="http://apfelmus.nfshost.com/">Heinrich Apfelmus&rsquo; blog</a> about something called &ldquo;operational semantics&rdquo; for monads. Found it very iluminating. Basically it's a form to implement monads focusing not on defining the bind and return operators, but on what the monad is really supposed to do. It's a view where a monad define a Domain Specific Language, that must be interpreted in order to cause it's effects. It seems to me it's exactly what is implemented in the <a href="http://hackage.haskell.org/packages/archive/MonadPrompt/1.0.0.2/doc/html/Control-Monad-Prompt.html">monadprompt (Control.Monad.Prompt)</a> package, although I'm not sure.</p>
 <h1 id="the-operational-monad">The Operational Monad</h1>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#080;font-style:italic">{-</span><span style="color:#080;font-style:italic"># LANGUAGE GADTs #</span><span style="color:#080;font-style:italic">-}</span>
@@ -234,8 +235,8 @@ fromList [(Y,1.0),(Z,1.0)]
                   return (f vec)
 </code></pre></div><p>More on this later. :)</p>
 
-    
-    <ul class="tags">
+      
+      <ul class="tags">
     
       <li><a class="tag" href="/tags/haskell">Haskell</a></li>
     
@@ -251,16 +252,12 @@ fromList [(Y,1.0),(Z,1.0)]
     
 </ul>
 
-    <div class="comments">
-      Comment here:
-      <script src="https://utteranc.es/client.js"
-          repo="rcalsaverini/rcalsaverini.github.io"
-          issue-term="title"
-          label="comment"
-          theme="github-light"
-          crossorigin="anonymous"
-          async>
-      </script>
+      <div class="comments">
+        Comment here:
+        <script src="https://utteranc.es/client.js" repo="rcalsaverini/rcalsaverini.github.io" issue-term="title"
+          label="comment" theme="github-light" crossorigin="anonymous" async>
+          </script>
+      </div>
     </div>
   </div>
 

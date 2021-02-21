@@ -32,17 +32,6 @@ The ugly syntax for function types is annoying but there are worse problems Yes,
     </item>
     
     <item>
-      <title>Einstein&#39;s racist diaries</title>
-      <link>https://rcalsaverini.github.io/blog/2018-06-12-einstein-racist-diary/</link>
-      <pubDate>Tue, 12 Jun 2018 21:00:00 -0300</pubDate>
-      
-      <guid>https://rcalsaverini.github.io/blog/2018-06-12-einstein-racist-diary/</guid>
-      <description>This is a thought motivated by the current story about racist and xenophobic remarks found in Albert Einstein&#39;s personal diaries.
-People are morally flawed. There are no ethical heroes that escape this fact. Every role model of the past have some shitty secrets for us to uncover. If we could read the minds of any of our heroes we would find scandalous things that would shock us.
-With high probability, many contemporaneous humanitarians and humanistic heroes shared the shocking thoughts we abhor from Einstein&#39;s diaries.</description>
-    </item>
-    
-    <item>
       <title>Type safe records as an excuse to learn type level programming in Haskell</title>
       <link>https://rcalsaverini.github.io/blog/2018-02-12-type-safe-records/</link>
       <pubDate>Mon, 12 Feb 2018 22:00:00 -0200</pubDate>
